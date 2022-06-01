@@ -1,0 +1,9 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="">Technology Name</label>
+    <input type="text" name="technologyName" [(ngModel)]="technology.name">
+  </div>
+  <div class="form-group">
+    <button>Save</button>
+  </div>
+</form>

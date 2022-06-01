@@ -1,0 +1,18 @@
+<div style="display: flex; align-items: center;">
+    <a style="margin-right: 10px;" (click)="changeIsProjectSelect()" class="btn btn-2">Back</a>
+    <a (click)="changeIsProjectSelect()" class="btn btn-2">Go to SCHEDULE</a>
+    <a (click)="changeIsProjectSelect()" class="btn btn-2">Go to POLL</a>
+</div>
+<div style="width: 100%; height: 0.1px; background-color: grey; margin: 20px 0;"></div>
+<div style="display: grid; grid-template-columns: auto auto; width: 50%;">
+    <div>Id :</div> 
+    <div>{{ userProjectData.id }}</div>
+    <div>Name :</div>
+    <div>{{ userProjectData.name }}</div>
+    <div>Executor :</div>
+    <div>{{ userProjectData.executorId }}</div>
+</div>
+
+<div style="width: 100%; height: 0.1px; background-color: grey; margin-top: 20px;"></div>
+
+<app-technology ></app-technology>

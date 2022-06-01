@@ -1,0 +1,18 @@
+<div *ngIf="!isProjectSelect">
+
+    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <a (click)="openCreateDialog()" class="btn btn-2">Create project</a>
+    </div>
+
+    <div class="projects" style="display: grid; grid-template-columns: auto auto auto;" *ngIf="userProjects.length > 0">
+        <div *ngFor="let p of userProjects" (click)="changeIsProjectSelect(p.id)">
+            {{ p.id }}
+        </div>
+    </div>
+
+    <div class="projects" style="display: grid; grid-template-columns: auto auto auto;" *ngIf="userProjects.length < 1">
+        <div>0000000000000000000000000000</div>
+    </div>
+</div>
+
+<app-project *ngIf="isProjectSelect"></app-project>

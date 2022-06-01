@@ -1,0 +1,7 @@
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: #e3165b;
+}
+
+.mat-form-field .mat-form-field-ripple{
+    background-color: #e3165b;
+}

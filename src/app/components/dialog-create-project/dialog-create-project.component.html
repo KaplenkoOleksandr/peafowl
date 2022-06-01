@@ -1,0 +1,13 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="">projectName</label>
+      <input type="text" name="projectName" [(ngModel)]="project.name">
+    </div>
+    <div class="form-group">
+        <label for="">projectDescription</label>
+        <input type="text" name="projectDescription" [(ngModel)]="project.description">
+      </div>
+    <div class="form-group">
+      <button>Save</button>
+    </div>
+  </form>

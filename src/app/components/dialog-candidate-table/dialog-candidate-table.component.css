@@ -1,0 +1,54 @@
+table {
+    border-spacing: 0;
+    font-size: 20px;
+    min-width: 70vw;
+}
+
+tr {
+    height: 40px;
+}
+
+thead {
+    background-color:  var(--color-primary);
+}
+
+thead th {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+th {
+    padding: 0 20px 0 20px;
+    font-weight: 400;
+
+}
+
+table tr:nth-child(odd) {
+    background-color: rgba(255, 187, 85, 0.33);
+}
+
+form label {
+    font-size: large;
+    margin: 20px;
+}
+
+form input {
+    font-size: large;
+    margin: 20px;
+    border-bottom: 2px solid grey;
+}
+
+form div input.asLabel {
+    border-bottom: 1px solid rgb(147, 189, 140);
+    width: 200px;
+}
+
+form li {
+    height: 20px;
+    background-color: white;
+    width: 100%;
+}
+
+form li:hover {
+    background-color: rgb(171, 171, 171);
+}

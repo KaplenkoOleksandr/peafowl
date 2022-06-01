@@ -1,0 +1,14 @@
+.projects {
+    gap: 4rem;
+}
+
+.projects div {
+    height: 200px;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    color: var(--color-dark);
+    cursor: pointer;
+}

@@ -1,0 +1,22 @@
+<div style="display: flex;">
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Project</mat-label>
+      <input id="inputProjectAutocomplete"
+            type="text"
+            matInput
+            placeholder="Start enter name"
+            [formControl]="myControl"
+            [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayProperty" (optionSelected)='get($event.option.value)'>
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option.name }} 
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <a class="btn btn-2" style="font-weight:400; font-size: large; margin:0 0 0.9em 20px; display: flex; align-items: center;" (click)="openProjectScheduler()">Open Project</a>
+  <a class="btn btn-2" style="font-weight:400; font-size: large; margin:0 0 0.9em 0; display: flex; align-items: center;" (click)="openMyScheduler()">Open My</a>
+  <a class="btn btn-2" style="font-weight:400; font-size: large; margin:0 0 0.9em 0; display: flex; align-items: center;" (click)="saveScheduler()">Save</a>
+</div>
+<ejs-schedule #scheduleObj [eventSettings]='eventSettings'></ejs-schedule>

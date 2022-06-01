@@ -1,0 +1,109 @@
+<div style="max-height: 80vh; overflow-y: auto;">
+    <div *ngIf="!isSelected">
+
+        <div style="display: block; height: 0.1px; background-color: grey;"></div>
+        <div (click)="closeShowCreate()" style="display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0 10px 0 10px;">
+            <h2 style="margin-top: 20px;">Create Candidate</h2>
+            <span *ngIf="!isShowCreate" class="material-icons-sharp">expand_more</span>
+            <span *ngIf="isShowCreate" class="material-icons-sharp">expand_less</span>
+        </div>
+        <div *ngIf="isShowCreate" style="padding: 0 20px">
+            <div>li_at</div>
+            <input style="display: block; width: 100%; border: 2px solid grey; padding: 3px; font-size: medium;" type="text" [(ngModel)]="addCandidate.li_at">
+            <div>linkedin</div>
+            <input style="display: block; width: 100%; border: 2px solid grey; padding: 3px; font-size: medium;" type="text" [(ngModel)]="addCandidate.linkedIn">
+            <div style="display: flex; height: 50px; width: 100%; justify-content: center; align-items: center;"><a (click)="createCandidate()" class="btn btn-2">Create</a></div>
+        </div>
+        <div style="display: block; height: 0.1px; background-color: grey; margin: 0 0 20px 0;"></div>
+        <div>
+            <h2>Search Candidates</h2>
+            <input type="text" style="border:1px solid red;" [(ngModel)]="pipeString">
+        </div>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+            </thead>
+            <tr *ngFor="let c of candidates | pipe:pipeString" (click)="changeSelectedCandidate(c.id)">
+                <th>{{ c.id }}</th>
+                <th>{{ c.name }}</th>
+                <th>{{ c.surname }}</th>
+                <th>{{ c.email }}</th>
+                <th>{{ c.phone }}</th>
+                <th>{{ c.processingStatus }}</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="isSelected" style="min-width: 70vw;">
+        <div style="display: flex; align-items: center; height: 50px; margin-left: 10px;"><a class="btn btn-2" (click)="changeSelectedCandidate()">Back</a></div>
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <div style="display: block; height: 1px; background-color: grey;"></div>
+            <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0 20px 0 20px;">
+                <h1 style="margin-top: 20px;">Сonsidered in</h1>
+                <div (click)="openCloseDropDown()"><a class="btn btn-2">Add Candidate to Technology</a></div>
+                <div *ngIf="openDropDown" style="width: 182px; max-height: 80px; overflow: auto; ">
+                    <li *ngFor="let t of ableTechology" (click)="addToListTechnology(t)">{{ t.name }}</li>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap;">
+                <div *ngFor="let item of technology" style="padding: 5px; border:2px solid var(--color-primary); margin: 5px;" (click)="deleteFromListTechnology(item)">
+                    {{ item.name }}
+                </div>
+                <div *ngFor="let item of deletedTechology" style="padding: 5px; border:2px solid var(--color-danger); text-decoration: line-through; margin: 5px;" (click)="popFromDelete(item)">
+                    {{ item.name }}
+                </div>
+            </div>
+            <div style="display: block; height: 0.1px; background-color: grey; margin-top: 20px;"></div>
+            <div style="display: block; padding: 0 20px 0 20px;">
+                <h1 style="margin-top: 20px;">Main parameters</h1>
+            </div>
+            <div style="display: grid; grid-template-columns: auto auto;">
+                <label for="">candidate name</label>
+                <input type="text" name="technologyName" [(ngModel)]="candidate.name">
+                <label for="">candidate surname</label>
+                <input type="text" name="technologySurname" [(ngModel)]="candidate.surname">
+                <label for="">candidate email</label>
+                <input type="text" name="technologyEmail" [(ngModel)]="candidate.email">
+                <label for="">candidate phone</label>
+                <input type="text" name="technologyPhone" [(ngModel)]="candidate.phone">
+                <label for="">candidate linkedIn</label>
+                <input type="text" name="technologyLinkedIn" [(ngModel)]="candidate.linkedIn">
+                <label for="">candidate processingStatus</label>
+                <input type="text" name="technologyProcessingStatus" [(ngModel)]="candidate.processingStatus">
+            </div>
+            <div style="display: block; height: 0.1px; background-color: grey; margin-top: 20px;"></div>
+            <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0 20px 0 20px;">
+                <h1 style="margin-top: 20px;">Additional parameters</h1>
+                <div (click)="try()"><a class="btn btn-2">Add Param</a></div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 250px auto 50px;" *ngFor="let item of additionalParams; let index=index">
+                <input class="asLabel" type="text" name="{{'paramName'+index}}" [(ngModel)]="item.paramName">
+                <input class='asValue' type="text" name="{{'paramValue'+index}}" [(ngModel)]="item.paramValue">
+                <div (click)="deleteAdditionalParam(item.id)" style="margin: auto; margin-right: 20px;">
+                    <span class="material-icons-sharp">clear</span>
+                </div>
+            </div>
+
+            <div *ngIf="deleted.length > 0">
+                <div style="display: block; height: 0.1px; background-color: grey; margin-top: 20px;"></div>
+                <div style="display: block; padding: 0 20px 0 20px;">
+                    <h1 style="margin-top: 20px;">Will be removed</h1>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: auto auto;" *ngFor="let delItem of deleted; let delIndex=index">
+                <input class="asLabel" type="text" name="{{'delParamName'+delIndex}}" [(ngModel)]="delItem.paramName">
+                <input type="text" name="{{'delParamValue'+delIndex}}" [(ngModel)]="delItem.paramValue">
+            </div>
+            <div class="form-group">
+                <button mat-button>Save</button>
+            </div>
+        </form>
+    </div>
+</div>

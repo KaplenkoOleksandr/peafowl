@@ -1,0 +1,11 @@
+div form {
+    padding-right: 10px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: #517594;
+}
+
+.mat-form-field .mat-form-field-ripple{
+    background-color: #517594;
+}

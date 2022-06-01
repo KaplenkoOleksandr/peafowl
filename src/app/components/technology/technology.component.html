@@ -1,0 +1,45 @@
+<div style="display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0 20px 0 20px;">
+    <div style="display: flex; align-items: center;" (click)="openCloseTechnologyTab()">
+        <h1 style="margin: 20px;">Needs Developer positions</h1>
+        <span *ngIf="!isOpenTechnology" class="material-icons-sharp">expand_more</span>
+        <span *ngIf="isOpenTechnology" class="material-icons-sharp">expand_less</span>
+    </div>
+    
+    <div *ngIf="isOpenTechnology" style="display: flex; align-items: center;">
+        <input style="border: 1px solid grey; background-color: transparent; font-size: medium; padding: 5px;" type="text" [(ngModel)]="filteringTechnology">
+        <span class="material-icons-sharp searchIcon">search</span>
+    </div>
+    <div *ngIf="isOpenTechnology" (click)="openCreateDialog()"><a class="btn btn-2">Create technology</a></div>
+</div>
+
+<div *ngIf="isOpenTechnology" style="display: flex; flex-wrap: wrap;">
+    <div (click)="openDialog(t.id)" *ngFor="let t of technology | technology:filteringTechnology" style="border:1px solid var(--color-dark); height: 300px; width: 200px; border-radius: 7px; box-shadow: var(--box-shadow); margin: 0 15px 15px 0;">
+        <div style="height: 80%; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-sharp" style="color: var(--color-warning); font-size: 150px;">sensor_occupied</span>
+        </div>
+        <div style="height: 20%; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+            {{ t.name }}
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%; height: 0.1px; background-color: grey; margin-top: 20px;"></div>
+<div style="display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0 20px 0 20px;">
+    <div style="display: flex; align-items: center;" (click)="openCloseTeamTab()">
+        <h1 style="margin: 20px;">Our team</h1>
+        <span *ngIf="!isOpenTeam" class="material-icons-sharp">expand_more</span>
+        <span *ngIf="isOpenTeam" class="material-icons-sharp">expand_less</span>
+    </div>
+    <div *ngIf="isOpenTeam" (click)="openCreateDialog()"><a class="btn btn-2">Create technology</a></div>
+</div>
+
+<div *ngIf="isOpenTeam" style="display: flex; flex-wrap: wrap;">
+    <div (click)="openDialog(t.id)" *ngFor="let t of technology" style="border:1px solid var(--color-dark); height: 300px; width: 200px; border-radius: 7px; box-shadow: var(--box-shadow); margin: 0 15px 15px 0;">
+        <div style="height: 80%; display: flex; align-items: center; justify-content: center;">
+            <span class="material-icons-sharp" style="color: var(--color-warning); font-size: 150px;">self_improvement</span>
+        </div>
+        <div style="height: 20%; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+            {{ t.name }}
+        </div>
+    </div>
+</div>
